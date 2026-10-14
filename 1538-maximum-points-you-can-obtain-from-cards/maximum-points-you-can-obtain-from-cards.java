@@ -1,21 +1,21 @@
 class Solution {
-    public int maxScore(int[] nums, int k) {
-        int total = Arrays.stream(nums).sum();
-        int wsum = 0;
-        int msum = Integer.MAX_VALUE;
+    public int maxScore(int[] card, int k) {
+        int n = card.length;
         int l = 0;
-        int n = nums.length;
-        if(n == k ){
+        int wsum = 0;
+        int min1 = Integer.MAX_VALUE;
+        int total = Arrays.stream(card).sum();
+        if(n == k){
             return total;
         }
-       for(int i = 0 ; i < nums.length;i++){
-        wsum += nums[i];
-        if( i - l + 1 == n - k){
-            msum = Math.min(wsum,msum);
-            wsum -= nums[l];
-            l++;
+        for(int i = 0; i < card.length;i++){
+            wsum += card[i];
+            if(i - l + 1 == n - k){
+                min1 = Math.min(min1,wsum);
+                wsum -= card[l];
+                l++;
+            }
         }
-       }
-       return total-msum;
+        return total - min1;
     }
 }
